@@ -21,7 +21,6 @@ export class UserResolver {
 
   @Mutation((returns) => User)
   public async create(@Args('user') user: CreateUserDto): Promise<User> {
-    console.log(user);
     user = await user.encryptPassword();
     return this.service.create(user, undefined);
   }
