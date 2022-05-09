@@ -30,7 +30,7 @@ export class UserResolver {
     @Args('id') id: string,
     @Args('user') user: UpdateUserDto,
   ): Promise<User> {
-    user = new UpdateUserDto(user, id);
+    user = await new UpdateUserDto(user, id).encryptPassword();
     return this.service.update(id, user, undefined);
   }
 
